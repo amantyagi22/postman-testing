@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: API Testing
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "development" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "development" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,3 +26,5 @@ jobs:
       - name: Run API tests
         run: |
           postman collection run "28345512-98868a68-9d09-4aef-bbcb-b243d6e59967" -e "28345512-580bf153-071c-44f1-921e-fe689e49be1b"
+      - name: Logout
+        run: postman logout ${{ secrets.POSTMAN_API_KEY }}
